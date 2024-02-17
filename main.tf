@@ -16,10 +16,10 @@ terraform {
   required_version = ">= 1.1.0"
 
   cloud {
-    organization = "DevopsFiap"
+    organization = "restaurante-34"
 
     workspaces {
-      name = "gh-actions"
+      name = "tech-challenge"
     }
   }
 }
