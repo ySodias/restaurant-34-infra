@@ -14,10 +14,7 @@ module "vpc" {
 
   tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-  }
-
-  subnet_tags = {
-    "kubernetes.io/role/elb"          = 1
-    "kubernetes.io/role/internal-elb" = 1
+    "kubernetes.io/role/elb"                      = 1
+    "kubernetes.io/role/internal-elb"             = 1
   }
 }
