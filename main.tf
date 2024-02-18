@@ -33,7 +33,7 @@ resource "aws_eks_cluster" "cluster" {
   role_arn = "arn:aws:iam::211125334332:role/LabRole"
 
   vpc_config {
-    subnet_ids = [aws_subnet.example1.id, aws_subnet.example2.id]
+    subnet_ids = ["subnet-074ef0d265d707d83", "subnet-01420c8586c83826f"]
   }
 }
 
