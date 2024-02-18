@@ -46,7 +46,8 @@ resource "aws_eks_cluster" "cluster" {
   role_arn = "arn:aws:iam::211125334332:role/LabRole"
 
   vpc_config {
-    subnet_ids = [aws_subnet.main.id] }
+    subnet_ids = [aws_subnet.main.id] 
+    }
 }
 
 output "endpoint" {
