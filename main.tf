@@ -37,7 +37,7 @@ resource "aws_eks_cluster" "cluster" {
   }
 
   depends_on = [
-    arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+    "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   ]
 }
 
