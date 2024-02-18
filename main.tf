@@ -28,10 +28,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-import {
-  to = aws_iam_role_policy_attachment.test-attach
-  id = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-}
 
 resource "aws_eks_cluster" "cluster" {
   name     = "cluster"
@@ -41,9 +37,6 @@ resource "aws_eks_cluster" "cluster" {
     subnet_ids = ["subnet-074ef0d265d707d83", "subnet-01420c8586c83826f"]
   }
 
-  depends_on = [
-    aws_iam_role_policy_attachment.test-attach
-  ]
 }
 
 output "endpoint" {
