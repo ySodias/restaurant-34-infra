@@ -28,6 +28,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
+import {
+  to = aws_iam_role_policy_attachment.test-attach
+  id = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+}
+
 resource "aws_eks_cluster" "cluster" {
   name     = "cluster"
   role_arn = "arn:aws:iam::211125334332:role/LabRole"
@@ -37,7 +42,7 @@ resource "aws_eks_cluster" "cluster" {
   }
 
   depends_on = [
-    "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+    aws_iam_role_policy_attachment.test-attach
   ]
 }
 
