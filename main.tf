@@ -35,6 +35,10 @@ resource "aws_eks_cluster" "cluster" {
   vpc_config {
     subnet_ids = ["subnet-074ef0d265d707d83", "subnet-01420c8586c83826f"]
   }
+
+  depends_on = [
+    arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+  ]
 }
 
 output "endpoint" {
