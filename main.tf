@@ -28,15 +28,25 @@ provider "aws" {
   region = "us-east-1"
 }
 
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_subnet" "main" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "Main"
+  }
+}
 
 resource "aws_eks_cluster" "cluster" {
   name     = "cluster"
   role_arn = "arn:aws:iam::211125334332:role/LabRole"
 
   vpc_config {
-    subnet_ids = ["subnet-074ef0d265d707d83", "subnet-01420c8586c83826f","subnet-051593cc2871ffbda","subnet-0fcca18b57d2004fd","subnet-0e523567f727fef16","subnet-061a5a1cf112202a4"]
-  }
-
+    subnet_ids = [aws_subnet.main.id] }
 }
 
 output "endpoint" {
