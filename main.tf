@@ -2,7 +2,7 @@ provider "aws" {
   region     = var.region
   access_key = var.access_key
   secret_key = var.secret_key
-  session = var.session_token
+  session    = var.session_token
 }
 #****** VPC Start ******#
 
