@@ -25,13 +25,13 @@ jobs:
           else
             echo "No changes in Terraform files."
             echo "::set-output name=changes::false"
-            exit 1
           fi
 
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
     needs: validation
+    if: ${{ needs.validation.result == 'success' && needs.validation.outputs.terraform_changes == 'true' }}
     permissions:
       pull-requests: write
     steps:
