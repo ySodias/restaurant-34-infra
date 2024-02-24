@@ -157,6 +157,9 @@ resource "aws_instance" "ec2_instance_msr" {
   }
   user_data_base64 = base64encode("${templatefile("scripts/install_k8s_msr.sh", {
 
+    access_key    = var.access_key
+    private_key   = var.secret_key
+    region        = var.region
     s3buckit_name = "k8s-${random_string.s3name.result}"
   })}")
 
@@ -186,6 +189,8 @@ resource "aws_instance" "ec2_instance_wrk" {
   }
   user_data_base64 = base64encode("${templatefile("scripts/install_k8s_wrk.sh", {
 
+    access_key    = var.access_key
+    private_key   = var.secret_key
     region        = var.region
     s3buckit_name = "k8s-${random_string.s3name.result}"
     worker_number = "${count.index + 1}"
