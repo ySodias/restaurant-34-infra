@@ -10,7 +10,6 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    if: ${{ needs.validation.result == 'success' && needs.validation.outputs.terraform_changes == 'true' }}
     permissions:
       pull-requests: write
     steps:
