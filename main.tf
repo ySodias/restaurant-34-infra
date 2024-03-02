@@ -176,7 +176,7 @@ resource "aws_instance" "ec2_instance_msr" {
 
 resource "aws_instance" "ec2_instance_wrk" {
   ami                         = var.ami_id
-  count                       = 2
+  count                       = 3
   subnet_id                   = aws_subnet.some_public_subnet.id
   instance_type               = var.instance_type
   key_name                    = var.ami_key_pair_name
