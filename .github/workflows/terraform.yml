@@ -7,30 +7,9 @@ on:
   pull_request:
 
 jobs:
-  validation:
-    name: "Validation Repository"
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Check for Terraform changes
-        id: terraform_changes
-        run: |
-          if ./.github/workflows/validate_diff.sh main HEAD '\.tf$' ; then
-            echo "Terraform files have been changed."
-            echo "::set-output name=changes::true"
-          else
-            echo "No changes in Terraform files."
-            echo "::set-output name=changes::false"
-          fi
-
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    needs: validation
     if: ${{ needs.validation.result == 'success' && needs.validation.outputs.terraform_changes == 'true' }}
     permissions:
       pull-requests: write
